@@ -56,15 +56,42 @@ function playRound(playerSelection, computerSelection) {
 function game() {
     let playerSelection;
     let computerSelection;
+    let roundResult;
+    let playerScore = 0, computerScore = 0, ties = 0;
     for (let i = 1; i < 6; i++) {
         playerSelection = prompt("Enter your selection: ");
         computerSelection = getComputerChoice();
         console.log("Round " + i + "\n");
         console.log("You chose: " + playerSelection + "\n");
         console.log("Computer chose: " + computerSelection + "\n");
-        console.log(playRound(playerSelection, computerSelection));
+        roundResult = playRound(playerSelection, computerSelection);
+        if (roundResult > 0)
+            playerScore ++;
+        else if (roundResult < 0)
+            computerScore ++;
+        else 
+            ties++;
         console.log("\n");
     }
+    if (playerScore > computerScore) {
+        console.log("You win this game of Rock-Paper-Scissors!");
+        console.log("\tWins: " + String(playerScore) + 
+                    "\n\tLosses: " + String(computerScore) + 
+                    "\n\tTies: " + String(ties) + "\n");
+    }
+    else if (computerScore > playerScore) {
+        console.log("You lost this game of Rock-Paper-Scissors!");
+        console.log("\tWins: " + String(playerScore) + 
+                    "\n\tLosses: " + String(computerScore) + 
+                    "\n\tTies: " + String(ties) + "\n");
+    }
+    else {
+        console.log("You tied this game of Rock Paper Scissors!");
+        console.log("\tWins: " + String(playerScore) + 
+                    "\n\tLosses: " + String(computerScore) + 
+                    "\n\tTies: " + String(ties) + "\n");
+    }
+    
 }
 
 game();

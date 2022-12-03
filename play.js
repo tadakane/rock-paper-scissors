@@ -34,3 +34,18 @@ function playRound(playerSelection, computerSelection) {
             return "It's a tie! Scissors ties Scissors";
 }
 
+function game() {
+    let playerSelection;
+    let computerSelection;
+    for (let i = 1; i < 6; i++) {
+        playerSelection = prompt("Enter your selection: ");
+        computerSelection = getComputerChoice();
+        console.log("Round " + i + "\n");
+        console.log("You chose: " + playerSelection + "\n");
+        console.log("Computer chose: " + computerSelection + "\n");
+        console.log(playRound(playerSelection, computerSelection));
+        console.log("\n");
+    }
+}
+
+game();

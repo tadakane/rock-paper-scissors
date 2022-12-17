@@ -11,14 +11,7 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
 
     const results = document.querySelector("#results");
-
-    const playerChoice = document.createElement("p");
-    playerChoice.textContent = "You chose: " + playerSelection;
-    results.appendChild(playerChoice);
-    const computerChoice = document.createElement("p");
-    computerChoice.textContent += "Computer chose: " + computerSelection;
-    results.appendChild(computerChoice);
-
+    const horizontal = document.createElement("hr");
     const resultText = document.createElement("p");
 
     if (playerSelection.toUpperCase() === "ROCK") {
@@ -62,7 +55,7 @@ function playRound(playerSelection, computerSelection) {
             return -1;
         }
         else if (computerSelection === "PAPER") {
-            resultsText.textContent = "You win! Scissors beats Paper";
+            resultText.textContent = "You win! Scissors beats Paper";
             results.appendChild(resultText);
             return 1;
         }
@@ -83,25 +76,49 @@ function game() {
         ties++;
     console.log("\n");
 
-    if (playerScore > computerScore) {
-        console.log("You win this game of Rock-Paper-Scissors!");
-        console.log("\tWins: " + String(playerScore) + 
-                    "\n\tLosses: " + String(computerScore) + 
-                    "\n\tTies: " + String(ties) + "\n");
+    const results = document.querySelector("#results");
+    const winnerText = document.createElement("p");
+    const score = document.createElement("p");
+    const horizontal = document.createElement("hr");
+
+    if (playerScore === 5 || computerScore === 5 || ties === 5) {
+        if (playerScore === 5) {
+            winnerText.textContent = "You win this game of Rock-Paper-Scissors!";
+            score.textContent = "\tWins: " + String(playerScore) + 
+                        "\n\tLosses: " + String(computerScore) + 
+                        "\n\tTies: " + String(ties) + "\n";
+            winnerText.style.fontWeight = 'bold';
+            winnerText.style.fontSize = 'x-large';
+            score.style.fontWeight = 'bold';
+            results.appendChild(winnerText);
+            results.appendChild(score);
+        }
+        else if (computerScore === 5) {
+            winnerText.textContent = "You lost this game of Rock-Paper-Scissors!";
+            score.textContent = "\tWins: " + String(playerScore) + 
+                        "\n\tLosses: " + String(computerScore) + 
+                        "\n\tTies: " + String(ties) + "\n";
+            winnerText.style.fontWeight = 'bold';
+            winnerText.style.fontSize = 'x-large';
+            score.style.fontWeight = 'bold';
+            results.appendChild(winnerText);
+            results.appendChild(score);
+        }
+        else if (ties === 5){
+            winnerText.textContent = "You tied this game of Rock Paper Scissors!";
+            score.textContent = "\tWins: " + String(playerScore) + 
+                        "\n\tLosses: " + String(computerScore) + 
+                        "\n\tTies: " + String(ties) + "\n";
+            winnerText.style.fontWeight = 'bold';
+            winnerText.style.fontSize = 'x-large';
+            score.style.fontWeight = 'bold';
+            results.appendChild(winnerText);
+            results.appendChild(score);
+        }
+        
+        playerScore = 0, computerScore = 0, ties = 0;
+        results.appendChild(horizontal);
     }
-    else if (computerScore > playerScore) {
-        console.log("You lost this game of Rock-Paper-Scissors!");
-        console.log("\tWins: " + String(playerScore) + 
-                    "\n\tLosses: " + String(computerScore) + 
-                    "\n\tTies: " + String(ties) + "\n");
-    }
-    else {
-        console.log("You tied this game of Rock Paper Scissors!");
-        console.log("\tWins: " + String(playerScore) + 
-                    "\n\tLosses: " + String(computerScore) + 
-                    "\n\tTies: " + String(ties) + "\n");
-    }
-    
 }
 
 let computerSelection;

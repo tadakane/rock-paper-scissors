@@ -10,48 +10,65 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
 
-    console.log("You chose: " + playerSelection + "\n");
-    console.log("Computer chose: " + computerSelection + "\n");
+    const results = document.querySelector("#results");
+
+    const playerChoice = document.createElement("p");
+    playerChoice.textContent = "You chose: " + playerSelection;
+    results.appendChild(playerChoice);
+    const computerChoice = document.createElement("p");
+    computerChoice.textContent += "Computer chose: " + computerSelection;
+    results.appendChild(computerChoice);
+
+    const resultText = document.createElement("p");
 
     if (playerSelection.toUpperCase() === "ROCK") {
         if (computerSelection === "ROCK") {
-            console.log("It's a tie! Rock ties Rock");
+            resultText.textContent = "It's a tie! Rock ties Rock";
+            results.appendChild(resultText);
             return 0;
         }
         else if (computerSelection === "PAPER") {
-            console.log("You lose! Paper beats Rock");
+            resultText.textContent = "You lose! Paper beats Rock";
+            results.appendChild(resultText);
             return -1;
         }
         else {
-            console.log("You win! Rock beats Scissors");
+            resultText.textContent = "You win! Rock beats Scissors";
+            results.appendChild(resultText);
             return 1;
         }
     }
     else if (playerSelection.toUpperCase() === "PAPER") {
         if (computerSelection === "ROCK") {
-            console.log("You win! Paper beats Rock");
+            resultText.textContent = "You win! Paper beats Rock";
+            results.appendChild(resultText);
             return 1;
         }
         else if (computerSelection === "PAPER") {
-            console.log("It's a tie! Paper ties Paper");
+            resultText.textContent = "It's a tie! Paper ties Paper";
+            results.appendChild(resultText);
             return 0;
         }
         else {
-            console.log("You lose! Scissors beats Paper");
+            resultText.textContent = "You lose! Scissors beats Paper";
+            results.appendChild(resultText);
             return -1;
         }
     }
     else {
         if (computerSelection === "ROCK") {
-            console.log("You lose! Rock beats Scissors");
+            resultText.textContent = "You lose! Rock beats Scissors";
+            results.appendChild(resultText);
             return -1;
         }
         else if (computerSelection === "PAPER") {
-            console.log("You win! Scissors beats Paper");
+            resultsText.textContent = "You win! Scissors beats Paper";
+            results.appendChild(resultText);
             return 1;
         }
         else {
-            console.log("It's a tie! Scissors ties Scissors");
+            resultText.textContent = "It's a tie! Scissors ties Scissors";
+            results.appendChild(resultText);
             return 0;
         }
     }
@@ -101,12 +118,12 @@ rockChoice.addEventListener('click', function(e) {
 const paperChoice = document.querySelector("#paper");
 paperChoice.addEventListener('click', function(e) {
     computerSelection = getComputerChoice();
-    roundResult = playRound("Paper", computerSelection);
+    roundResult = playRound("PAPER", computerSelection);
     game();
 });
 const scissorsChoice = document.querySelector('#scissors');
 scissorsChoice.addEventListener('click', function(e) {
     computerSelection = getComputerChoice();
-    roundResult = playRound("Scissors", computerSelection);
+    roundResult = playRound("SCISSORS", computerSelection);
     game();
 });

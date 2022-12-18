@@ -92,7 +92,7 @@ function game() {
 
     if (playerScore === 5 || computerScore === 5 || ties === 5) {
         if (playerScore === 5) {
-            winnerText.textContent = "You win this game of Rock-Paper-Scissors!";
+            winnerText.textContent = "You won this game of Rock-Paper-Scissors!";
             winnerText.style.color = 'green';
         }
         else if (computerScore === 5) {
@@ -129,7 +129,7 @@ function game() {
     }
 }
 
-document.querySelector('body').style.backgroundColor = 'lightblue';
+document.querySelector('body').style.backgroundColor = '#b3ebff';
 document.querySelector('body').style.textAlign = 'center';
 
 let computerSelection;

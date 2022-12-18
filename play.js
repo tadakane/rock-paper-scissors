@@ -88,42 +88,27 @@ function game() {
     if (playerScore === 5 || computerScore === 5 || ties === 5) {
         if (playerScore === 5) {
             winnerText.textContent = "You win this game of Rock-Paper-Scissors!";
-            score.textContent = "\tWins: " + String(playerScore) + 
-                        "\n\tLosses: " + String(computerScore) + 
-                        "\n\tTies: " + String(ties) + "\n";
-            winnerText.style.fontWeight = 'bold';
-            winnerText.style.fontSize = 'x-large';
             winnerText.style.color = 'green';
-            score.style.fontWeight = 'bold';
-            results.appendChild(winnerText);
-            results.appendChild(score);
         }
         else if (computerScore === 5) {
             winnerText.textContent = "You lost this game of Rock-Paper-Scissors!";
-            score.textContent = "\tWins: " + String(playerScore) + 
-                        "\n\tLosses: " + String(computerScore) + 
-                        "\n\tTies: " + String(ties) + "\n";
-            winnerText.style.fontWeight = 'bold';
-            winnerText.style.fontSize = 'x-large';
             winnerText.style.color = 'red';
-            score.style.fontWeight = 'bold';
-            results.appendChild(winnerText);
-            results.appendChild(score);
         }
         else if (ties === 5){
             winnerText.textContent = "You tied this game of Rock Paper Scissors!";
-            score.textContent = "\tWins: " + String(playerScore) + 
-                        "\n\tLosses: " + String(computerScore) + 
-                        "\n\tTies: " + String(ties) + "\n";
-            winnerText.style.fontWeight = 'bold';
-            winnerText.style.fontSize = 'x-large';
-            score.style.fontWeight = 'bold';
-            results.appendChild(winnerText);
-            results.appendChild(score);
         }
         
-        playerScore = 0, computerScore = 0, ties = 0;
+        score.textContent = "\tWins: " + String(playerScore) + 
+                            "\n\tLosses: " + String(computerScore) + 
+                            "\n\tTies: " + String(ties) + "\n";
+        winnerText.style.fontWeight = 'bold';
+        winnerText.style.fontSize = 'x-large';
+        score.style.fontWeight = 'bold';
+        results.appendChild(winnerText);
+        results.appendChild(score);
         results.appendChild(horizontal);
+
+        playerScore = 0, computerScore = 0, ties = 0;
     }
 }
 

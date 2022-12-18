@@ -1,6 +1,6 @@
 # rock-paper-scissors
 
-A browser console program to demonstrate basic javascript skills
+A simple program to demonstrate basic javascript skills
 
 This program utilizes a user UI to simulate a game of
 rock-paper-scissors using javascript functions like addEventListener

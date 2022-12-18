@@ -11,7 +11,6 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
 
     const results = document.querySelector("#results");
-    const horizontal = document.createElement("hr");
     const resultText = document.createElement("p");
 
     if (playerSelection.toUpperCase() === "ROCK") {
@@ -22,11 +21,13 @@ function playRound(playerSelection, computerSelection) {
         }
         else if (computerSelection === "PAPER") {
             resultText.textContent = "You lose! Paper beats Rock";
+            resultText.style.color = 'red';
             results.appendChild(resultText);
             return -1;
         }
         else {
             resultText.textContent = "You win! Rock beats Scissors";
+            resultText.style.color = 'green';
             results.appendChild(resultText);
             return 1;
         }
@@ -34,6 +35,7 @@ function playRound(playerSelection, computerSelection) {
     else if (playerSelection.toUpperCase() === "PAPER") {
         if (computerSelection === "ROCK") {
             resultText.textContent = "You win! Paper beats Rock";
+            resultText.style.color = 'green';
             results.appendChild(resultText);
             return 1;
         }
@@ -44,6 +46,7 @@ function playRound(playerSelection, computerSelection) {
         }
         else {
             resultText.textContent = "You lose! Scissors beats Paper";
+            resultText.style.color = 'red';
             results.appendChild(resultText);
             return -1;
         }
@@ -51,11 +54,13 @@ function playRound(playerSelection, computerSelection) {
     else {
         if (computerSelection === "ROCK") {
             resultText.textContent = "You lose! Rock beats Scissors";
+            resultText.style.color = 'red';
             results.appendChild(resultText);
             return -1;
         }
         else if (computerSelection === "PAPER") {
             resultText.textContent = "You win! Scissors beats Paper";
+            resultText.style.color = 'green';
             results.appendChild(resultText);
             return 1;
         }
@@ -74,7 +79,6 @@ function game() {
         computerScore ++;
     else 
         ties++;
-    console.log("\n");
 
     const results = document.querySelector("#results");
     const winnerText = document.createElement("p");
@@ -89,6 +93,7 @@ function game() {
                         "\n\tTies: " + String(ties) + "\n";
             winnerText.style.fontWeight = 'bold';
             winnerText.style.fontSize = 'x-large';
+            winnerText.style.color = 'green';
             score.style.fontWeight = 'bold';
             results.appendChild(winnerText);
             results.appendChild(score);
@@ -100,6 +105,7 @@ function game() {
                         "\n\tTies: " + String(ties) + "\n";
             winnerText.style.fontWeight = 'bold';
             winnerText.style.fontSize = 'x-large';
+            winnerText.style.color = 'red';
             score.style.fontWeight = 'bold';
             results.appendChild(winnerText);
             results.appendChild(score);
@@ -120,6 +126,9 @@ function game() {
         results.appendChild(horizontal);
     }
 }
+
+document.querySelector('body').style.backgroundColor = 'lightblue';
+document.querySelector('body').style.textAlign = 'center';
 
 let computerSelection;
 let roundResult;

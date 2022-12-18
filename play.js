@@ -10,12 +10,13 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
 
-    const results = document.querySelector("#results");
+    const results = document.querySelector("#gameResults");
     const resultText = document.createElement("p");
 
     if (playerSelection.toUpperCase() === "ROCK") {
         if (computerSelection === "ROCK") {
             resultText.textContent = "It's a tie! Rock ties Rock";
+            resultText.style.color = 'gray';
             results.appendChild(resultText);
             return 0;
         }
@@ -41,6 +42,7 @@ function playRound(playerSelection, computerSelection) {
         }
         else if (computerSelection === "PAPER") {
             resultText.textContent = "It's a tie! Paper ties Paper";
+            resultText.style.color = 'gray';
             results.appendChild(resultText);
             return 0;
         }
@@ -66,6 +68,7 @@ function playRound(playerSelection, computerSelection) {
         }
         else {
             resultText.textContent = "It's a tie! Scissors ties Scissors";
+            resultText.style.color = 'gray';
             results.appendChild(resultText);
             return 0;
         }
@@ -73,6 +76,9 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
+    const results = document.querySelector("#gameResults");
+    const winnerText = document.createElement("p");
+
     if (roundResult > 0)
         playerScore ++;
     else if (roundResult < 0)
@@ -80,10 +86,9 @@ function game() {
     else 
         ties++;
 
-    const results = document.querySelector("#results");
-    const winnerText = document.createElement("p");
-    const score = document.createElement("p");
-    const horizontal = document.createElement("hr");
+    score.textContent = "Wins: " + String(playerScore) + 
+                        "\tLosses: " + String(computerScore) + 
+                        "\tTies: " + String(ties);
 
     if (playerScore === 5 || computerScore === 5 || ties === 5) {
         if (playerScore === 5) {
@@ -96,19 +101,31 @@ function game() {
         }
         else if (ties === 5){
             winnerText.textContent = "You tied this game of Rock Paper Scissors!";
+            winnerText.style.color = 'gray';
         }
-        
-        score.textContent = "\tWins: " + String(playerScore) + 
-                            "\n\tLosses: " + String(computerScore) + 
-                            "\n\tTies: " + String(ties) + "\n";
         winnerText.style.fontWeight = 'bold';
         winnerText.style.fontSize = 'x-large';
-        score.style.fontWeight = 'bold';
         results.appendChild(winnerText);
-        results.appendChild(score);
-        results.appendChild(horizontal);
 
         playerScore = 0, computerScore = 0, ties = 0;
+
+        rockChoice.disabled = true;
+        paperChoice.disabled = true;
+        scissorsChoice.disabled = true;
+        let playAgain = document.createElement("button");
+        playAgain.textContent = "Play Again";
+        results.append(playAgain);
+        playAgain.addEventListener('click', () => {
+            rockChoice.disabled = false;
+            paperChoice.disabled = false;
+            scissorsChoice.disabled = false;
+            while (gameResults.firstChild) {
+                gameResults.removeChild(gameResults.firstChild);
+            }
+        score.textContent = "Wins: " + String(playerScore) + 
+                            "\tLosses: " + String(computerScore) + 
+                            "\tTies: " + String(ties);
+        });
     }
 }
 
@@ -119,20 +136,36 @@ let computerSelection;
 let roundResult;
 let playerScore = 0, computerScore = 0, ties = 0;
 
+let results = document.querySelector('#results');
+let labels = document.createElement('div');
+let gameOutput = document.createElement('div');
+gameOutput.setAttribute('id', 'gameResults');
+let score = document.createElement('h2');
+score.textContent = "Wins: " + String(playerScore) + 
+                    "\tLosses: " + String(computerScore) + 
+                    "\tTies: " + String(ties);
+labels.append(score);
+results.append(labels);
+results.append(gameOutput);
 
 const rockChoice = document.querySelector("#rock");
+rockChoice.style.margin = '15px';
 rockChoice.addEventListener('click', function(e) {
     computerSelection = getComputerChoice();
     roundResult = playRound("ROCK", computerSelection);
     game();
 });
+
 const paperChoice = document.querySelector("#paper");
+paperChoice.style.margin = '15px';
 paperChoice.addEventListener('click', function(e) {
     computerSelection = getComputerChoice();
     roundResult = playRound("PAPER", computerSelection);
     game();
 });
+
 const scissorsChoice = document.querySelector('#scissors');
+scissorsChoice.style.margin = '15px';
 scissorsChoice.addEventListener('click', function(e) {
     computerSelection = getComputerChoice();
     roundResult = playRound("SCISSORS", computerSelection);
